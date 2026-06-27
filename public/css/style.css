@@ -41,7 +41,7 @@ nav {
     gap: 10px;
 }
 
-nav a {
+nav a, .nav-link {
     color: #e2e8f0;
     text-decoration: none;
     padding: 8px 16px;
@@ -50,13 +50,13 @@ nav a {
     font-weight: 500;
 }
 
-nav a:hover {
+nav a:hover, .nav-link:hover {
     background: rgba(255,255,255,0.1);
     color: #fff;
     transform: translateY(-1px);
 }
 
-nav a i {
+nav a i, .nav-link i {
     margin-right: 6px;
 }
 
@@ -95,12 +95,8 @@ h2 {
     box-shadow: 0 6px 30px rgba(0,0,0,0.12);
 }
 
-button, .btn {
-    background: #3498db;
-    color: #fff;
+.btn {
     border: none;
-    padding: 10px 20px;
-    border-radius: 8px;
     cursor: pointer;
     font-size: 15px;
     font-weight: 500;
@@ -111,10 +107,9 @@ button, .btn {
     gap: 8px;
 }
 
-button:hover, .btn:hover {
-    background: #2980b9;
+.btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(52,152,219,0.3);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 table {
@@ -164,6 +159,13 @@ input[type="number"]:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(59,130,246,0.15);
     background: #fff;
+}
+
+.alert {
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-weight: 500;
 }
 
 .success-msg {

@@ -11,8 +11,12 @@
     <header>
         <h1><i class="fas fa-paw"></i> Tienda de Mascotas</h1>
         <nav>
-            <a href="{{ route('pets.index') }}"><i class="fas fa-paw"></i> Mascotas</a>
-            <a href="{{ route('pets.create') }}"><i class="fas fa-plus"></i> Nueva Mascota</a>
+            <x-nav-link href="{{ route('pets.index') }}" icon="fas fa-paw">
+                Mascotas
+            </x-nav-link>
+            <x-nav-link href="{{ route('pets.create') }}" icon="fas fa-plus">
+                Nueva Mascota
+            </x-nav-link>
         </nav>
     </header>
 
