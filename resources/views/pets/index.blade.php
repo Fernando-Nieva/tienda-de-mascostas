@@ -52,9 +52,7 @@
         </tbody>
     </table>
 
-    <div class="pagination">
-        {{ $pets->links() }}
-    </div>
+    {{ $pets->links() }}
 </div>
 
 @endsection
