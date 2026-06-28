@@ -1,50 +1,60 @@
 @extends('layouts.app')
 @section('title', 'Listado de Mascotas')
+
 @section('content')
-<div class="bg-white rounded-xl shadow p-6">
- <div class="flex justify-between items-center mb-6">
- <h2 class="text-2xl font-bold text-slate-800">
- Directorio de Mascotas
- </h2>
- <a
- href="{{ route('pets.create') }}"
-  class="bg-green-600 hover:bg-green-700 text-white px-4 py-2
-rounded-lg transition"
-  >
-  <i class="fas fa-plus"></i> Registrar Nueva Mascota
- </a>
- </div>
- @if(session('success'))
- <div class="bg-green-100 text-green-800 px-4 py-3 rounded-lg
-mb-4">
- {{ session('success') }}
- </div>
- @endif
- <div class="overflow-x-auto">
- <table class="w-full border-collapse">
- <thead>
- <tr class="bg-slate-800 text-white">
- <th class="px-4 py-3 text-left">ID</th>
- <th class="px-4 py-3 text-left">Nombre</th>
- <th class="px-4 py-3 text-left">Especie</th>
- <th class="px-4 py-3 text-left">Edad</th>
- </tr>
- </thead>
- <tbody>
- @foreach($pets as $pet)
- <tr class="border-b hover:bg-gray-100">
- <td class="px-4 py-3">{{ $pet->id }}</td>
- <td class="px-4 py-3 font-semibold">{{
-$pet->name }}</td>
- <td class="px-4 py-3">{{ $pet->species }}</td>
- <td class="px-4 py-3">{{ $pet->age }} años</td>
- </tr>
- @endforeach
- </tbody>
- </table>
- </div>
- <div class="mt-6">
- {{ $pets->links() }}
- </div>
+
+<div class="card">
+    <h2>Directorio de Mascotas</h2>
+
+    @if(session('success'))
+        <div class="alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    <div class="actions">
+        <a href="{{ route('pets.create') }}" class="btn">
+            Registrar Nueva Mascota
+        </a>
+    </div>
+
+    <div class="filter-box">
+        <form method="GET" action="{{ route('pets.index') }}">
+            <label>Filtrar por especie:</label>
+            <input type="text" name="buscar" placeholder="Ej: Gato, Perro..." value="{{ request('buscar') }}">
+            <button type="submit" class="btn">Buscar</button>
+            <a href="{{ route('pets.index') }}" class="btn btn-secondary">Limpiar</a>
+        </form>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Especie</th>
+                <th>Edad</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse($pets as $pet)
+            <tr>
+                <td>{{ $pet->id }}</td>
+                <td class="name">{{ $pet->name }}</td>
+                <td><span class="badge">{{ $pet->species }}</span></td>
+                <td>{{ $pet->age }} años</td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="4" class="empty">No hay mascotas registradas.</td>
+            </tr>
+            @endforelse
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        {{ $pets->links() }}
+    </div>
 </div>
+
 @endsection
