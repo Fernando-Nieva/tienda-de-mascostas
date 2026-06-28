@@ -20,8 +20,8 @@
 
     <div class="filter-box">
         <form method="GET" action="{{ route('pets.index') }}">
-            <label>Filtrar por especie:</label>
-            <input type="text" name="buscar" placeholder="Ej: Gato, Perro..." value="{{ request('buscar') }}">
+<label>Buscar:</label>
+<input type="text" name="buscar" placeholder="Nombre o especie..." value="{{ request('buscar') }}">
             <button type="submit" class="btn">Buscar</button>
             <a href="{{ route('pets.index') }}" class="btn btn-secondary">Limpiar</a>
         </form>
