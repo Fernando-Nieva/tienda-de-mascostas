@@ -26,7 +26,6 @@ $request->validate([
 ]);
 Pet::create($request->all());
 return redirect()->route('pets.index')
-->with('success', 'Mascota registrada
-correctamente.');
+->with('success', 'Mascota registrada correctamente.');
 }
 }
