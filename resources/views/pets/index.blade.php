@@ -14,7 +14,7 @@
 
     <div class="actions">
         <a href="{{ route('pets.create') }}" class="btn">
-            Registrar Nueva Mascota
+            ➕ Registrar Nueva Mascota
         </a>
     </div>
 

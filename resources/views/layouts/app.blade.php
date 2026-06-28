@@ -9,8 +9,8 @@
 <header class="header">
 <h1>Sistema de Mascotas</h1>
 <nav>
-<a href="{{ route('pets.index') }}">Listado</a>
-<a href="{{ route('pets.create') }}">Nueva Mascota</a>
+<a href="{{ route('pets.index') }}">🐶 Listado</a>
+<a href="{{ route('pets.create') }}">➕ Nueva Mascota</a>
 </nav>
 </header>
 <main class="container">
