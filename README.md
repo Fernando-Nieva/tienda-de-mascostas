@@ -1,58 +1,140 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🐾 Tienda de Mascotas
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Proyecto desarrollado para **Programación III** — Tecnicatura Universitaria en Programación (TUP) — **UTN**.
 
-## About Laravel
+Aplicación web CRUD en **Laravel 13** para la gestión de mascotas. Permite registrar, listar, buscar y paginar mascotas usando el ORM Eloquent con vistas Blade.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🧰 Tecnologías
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| Tecnología | Versión |
+|---|---|
+| Laravel | 13.x |
+| PHP | 8.3+ |
+| Base de datos | SQLite |
+| Frontend | Blade + CSS personalizado |
+| Tipografía | Inter (Google Fonts) |
+| Build | Vite |
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## ✨ Funcionalidades
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Registro de mascotas** — Formulario con validación (nombre, especie, edad)
+- **Listado paginado** — Tabla con 5 mascotas por página
+- **Búsqueda** — Filtro por nombre o especie
+- **Paginación personalizada** — Navegación entre páginas con diseño moderno
+- **Mensajes flash** — Feedback visual al registrar una mascota
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+---
 
-## Agentic Development
+## 🗄️ Base de datos
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Tabla `pets`
+
+| Columna | Tipo | Descripción |
+|---|---|---|
+| `id` | BIGINT UNSIGNED PK | Identificador único |
+| `name` | VARCHAR(255) | Nombre de la mascota |
+| `species` | VARCHAR(255) | Especie (Perro, Gato, Loro, etc.) |
+| `age` | INTEGER | Edad en años |
+| `created_at` | TIMESTAMP | Fecha de creación |
+| `updated_at` | TIMESTAMP | Fecha de actualización |
+
+### Datos de prueba
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+php artisan db:seed
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Genera **50 mascotas** aleatorias usando Factory + Faker.
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🚀 Instalación
 
-## Code of Conduct
+```bash
+git clone https://github.com/Fernando-Nieva/tienda-de-mascostas.git
+cd tienda-de-mascostas
+composer install
+npm install
+cp .env.example .env
+php artisan key:generate
+php artisan migrate
+php artisan db:seed
+php artisan serve
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Luego acceder a `http://localhost:8000`.
 
-## Security Vulnerabilities
+---
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## 📁 Estructura del proyecto
 
-## License
+```
+app/
+├── Http/Controllers/
+│   └── PetController.php      # Lógica CRUD (index, create, store)
+├── Models/
+│   └── Pet.php                # Modelo Eloquent con HasFactory
+├── Providers/
+│   └── AppServiceProvider.php  # Configuración de paginación
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+database/
+├── factories/
+│   └── PetFactory.php          # Datos falsos para pruebas
+├── migrations/
+│   └── create_pets_table.php   # Esquema de la tabla pets
+└── seeders/
+    └── DatabaseSeeder.php      # Genera 50 mascotas
+
+resources/views/
+├── layouts/
+│   └── app.blade.php           # Layout reutilizable
+├── pets/
+│   ├── index.blade.php         # Listado con tabla y filtro
+│   └── create.blade.php        # Formulario de registro
+├── components/
+│   ├── nav-link.blade.php      # Componente de navegación
+│   ├── input-field.blade.php   # Campo de formulario
+│   ├── btn.blade.php           # Botón reutilizable
+│   ├── alert.blade.php         # Mensaje de alerta
+│   └── card.blade.php          # Contenedor tarjeta
+└── vendor/pagination/
+    └── custom.blade.php        # Paginación personalizada
+
+public/css/
+└── style.css                   # Estilos CSS personalizados
+
+routes/
+└── web.php                     # Rutas web
+```
+
+---
+
+## 🧪 Rutas disponibles
+
+| Método | URI | Controlador | Nombre |
+|---|---|---|---|
+| GET | `/` | `PetController@index` | `pets.index` |
+| GET | `/mascotas` | `PetController@index` | — |
+| GET | `/mascotas/crear` | `PetController@create` | `pets.create` |
+| POST | `/mascotas` | `PetController@store` | `pets.store` |
+
+---
+
+## 🎨 Diseño y UX
+
+- **Layout reutilizable** con header, nav y footer común
+- **CSS externo** con estilos modernos (gradientes, sombras, transiciones)
+- **Componentes Blade** para código limpio y reutilizable
+- **Tabla** con zebrado, badges de especie y hover
+- **Paginación** con botones numerados y diseño propio
+- **Emojis** en navegación y botones para mejor experiencia visual
+
+---
+
+## 👨‍💻 Autor
+
+**Fernando Nieva** — TUP UTN
